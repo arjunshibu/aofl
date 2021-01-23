@@ -44,4 +44,9 @@ describe('object-utils#set', function() {
     expect(set(this.data, 'noprop.noprop.noprop', 'noprop'));
     expect(get(this.data, 'noprop.noprop.noprop')).to.equal('noprop');
   });
+
+  it('Should not pollute object prototype', function() {
+    set(this.data, '__proto__.polluted', true);
+    expect({}.polluted).to.equal(undefined);
+  });
 });
